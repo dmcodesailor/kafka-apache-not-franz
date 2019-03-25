@@ -3,6 +3,7 @@
 .mtj.tmp/
 # Package Files #
 *.jar...
+target/
 
 .DS_Store
 .idea
