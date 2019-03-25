@@ -1,5 +1,7 @@
 # Kafka (Apache, not Franz)
 
+*Note: `scripts-ref-sh` is simply a reference to scripts I run often while experimenting.*
+
 ## Learning
 Read the "Introduction" thoroughly.
 - [http://kafka.apache.org/intro](http://kafka.apache.org/intro)
