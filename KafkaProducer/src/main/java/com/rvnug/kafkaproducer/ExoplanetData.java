@@ -1,4 +1,4 @@
-package com.aap.kafkaproducer;
+package com.rvnug.kafkaproducer;
 
 public class ExoplanetData {
 

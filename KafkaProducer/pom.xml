@@ -60,7 +60,7 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>com.aap.kafkaproducer.AapKafkaProducer</Main-Class>
+                                        <Main-Class>com.rvnug.kafkaproducer.KafkaProducer</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>

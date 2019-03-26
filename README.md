@@ -57,7 +57,7 @@ The folders in this repo contain a sample application for writing your own produ
 It's important to understand Kafka provides an API, and not an SDK. You will notice the code is written to write to or read from topics without inheriting from classes in the Kafka namespace/package.  I wrote the producer and consumer to be invoked from stand-alone startup classes, each of which is bundled as a JAR.
 
 ### exoplanet Microservice
-I wrote a microservice using Vert.x(link) and PostgreSQL which serves stellar data (astrophysics, not celebrities).  There exists a great deal of data in this space and it is in the public domain so it is a good source for expressing streaming with Kafka.
+I wrote a microservice using [Vert.x](http://vertx.io/) and PostgreSQL (I am running 10.5) which serves stellar data (astrophysics, not celebrities).  There exists a great deal of data in this space and it is in the public domain so it is a good source for expressing streaming with Kafka.
 
 This folder contains the microservice which reads data from the PostgreSQL database.  The table create script and data for importing are both in the root of this folder.
 

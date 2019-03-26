@@ -1,9 +1,8 @@
-package com.aap.kafkaproducer;
+package com.rvnug.kafkaproducer;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -17,24 +16,24 @@ import java.util.concurrent.ExecutionException;
 import static org.asynchttpclient.Dsl.asyncHttpClient;
 import org.asynchttpclient.*;
 
-public class AapKafkaProducer {
+public class KafkaProducer {
 
-    private final KafkaProducer<Integer, String> producer;
+    private final org.apache.kafka.clients.producer.KafkaProducer producer;
     private final String topic;
     private final Boolean isAsync;
 
     public static void main(String[] args) {
-        AapKafkaProducer thisProducer = new AapKafkaProducer("exoplanet-data-etl", false);
+        KafkaProducer thisProducer = new KafkaProducer("exoplanet-data-etl", false);
         thisProducer.doIt();
     }
 
-    public AapKafkaProducer(String topic, Boolean isAsync) {
+    public KafkaProducer(String topic, Boolean isAsync) {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9093");
         props.put(ProducerConfig.CLIENT_ID_CONFIG, "exoplanet-data-producer");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        producer = new KafkaProducer(props);
+        producer = new org.apache.kafka.clients.producer.KafkaProducer(props);
         this.topic = topic;
         this.isAsync = isAsync;
     }
@@ -75,7 +74,7 @@ public class AapKafkaProducer {
 
     private void produceExoplanetRecord(ExoplanetData exoplanetData) {
         try {
-            RecordMetadata recordMetadata = producer.send(new ProducerRecord<>(topic, exoplanetData.getId(), exoplanetData.getEntityJson())).get();
+            RecordMetadata recordMetadata = (RecordMetadata) producer.send(new ProducerRecord<>(topic, exoplanetData.getId(), exoplanetData.getEntityJson())).get();
             System.out.println(String.format("Produced %s) %s (%s)...", exoplanetData.getId().toString(), exoplanetData.getName(), exoplanetData.getStarName()));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
